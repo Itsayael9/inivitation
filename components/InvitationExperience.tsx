@@ -8,9 +8,10 @@ import Envelope from "./Envelope";
 import InvitationContent from "./InvitationContent";
 import FinaleSection from "./FinaleSection";
 import AmbientLife from "./AmbientLife";
+import MusicAutoplayPrompt from "./MusicAutoplayPrompt";
 import MusicControl from "./MusicControl";
 import MusicStartHint from "./MusicStartHint";
-import { playWeddingMusic } from "@/lib/weddingMusic";
+import { playWeddingMusic, preloadMusic, verifyMusicPlaying } from "@/lib/weddingMusic";
 import { prefersReducedMotion } from "@/lib/motion";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -50,6 +51,18 @@ export default function InvitationExperience() {
     if (!opened) el.classList.add("no-scroll");
     else el.classList.remove("no-scroll");
     return () => el.classList.remove("no-scroll");
+  }, [opened]);
+
+  /* Warm up audio on first touch (helps iOS unlock playback). */
+  useEffect(() => {
+    if (opened) return;
+    const warm = () => preloadMusic();
+    document.addEventListener("touchstart", warm, { once: true, passive: true });
+    document.addEventListener("click", warm, { once: true });
+    return () => {
+      document.removeEventListener("touchstart", warm);
+      document.removeEventListener("click", warm);
+    };
   }, [opened]);
 
   /* Landing — gentle envelope float + header entrance */
@@ -327,6 +340,7 @@ export default function InvitationExperience() {
     const finish = () => {
       setOpened(true);
       window.scrollTo(0, 0);
+      verifyMusicPlaying();
     };
 
     if (!overlay || !envelope || !letter || !flap || !seal) {
@@ -460,6 +474,7 @@ export default function InvitationExperience() {
             <FinaleSection />
           </div>
           <MusicControl visible />
+          <MusicAutoplayPrompt visible />
         </>
       ) : (
         <>

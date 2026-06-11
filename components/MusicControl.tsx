@@ -1,27 +1,47 @@
 "use client";
 
-import { useState } from "react";
-import { muteWeddingMusic } from "@/lib/weddingMusic";
+import { useEffect, useState } from "react";
+import {
+  resumeWeddingMusic,
+  subscribeMusicState,
+  toggleWeddingMusic,
+  type MusicState,
+} from "@/lib/weddingMusic";
 
 export default function MusicControl({ visible }: { visible: boolean }) {
-  const [muted, setMuted] = useState(false);
+  const [musicState, setMusicState] = useState<MusicState>("idle");
+
+  useEffect(() => subscribeMusicState(setMusicState), []);
+
   if (!visible) return null;
+
+  const playing = musicState === "playing";
+  const blocked = musicState === "blocked";
+
+  async function handleClick() {
+    if (blocked || musicState === "idle" || musicState === "paused") {
+      await resumeWeddingMusic();
+    } else {
+      toggleWeddingMusic();
+    }
+  }
+
+  const label = blocked
+    ? "اضغط لتشغيل الموسيقى"
+    : playing
+      ? "إيقاف الموسيقى مؤقتاً"
+      : "تشغيل الموسيقى";
 
   return (
     <button
       type="button"
-      onClick={() => {
-        const next = !muted;
-        setMuted(next);
-        muteWeddingMusic(next);
-      }}
-      aria-label={muted ? "تشغيل الموسيقى" : "كتم الموسيقى"}
-      className="music-control-btn fixed z-40 flex items-center justify-center"
+      onClick={handleClick}
+      aria-label={label}
+      className={`music-control-btn fixed z-40 flex items-center justify-center ${blocked ? "music-control-btn--pulse" : ""}`}
     >
-      {muted ? (
-        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" aria-hidden="true">
-          <path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M17 9l4 4M21 9l-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      {blocked || !playing ? (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7L8 5z" />
         </svg>
       ) : (
         <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" aria-hidden="true">
