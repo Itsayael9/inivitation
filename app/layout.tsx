@@ -33,9 +33,35 @@ const marhey = Marhey({
   weight: ["300", "400"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: `دعوة زفاف | ${COUPLE_DISPLAY}`,
   description: "يسعدنا ويشرفنا أن ندعو حضرتكم الكريمة لمشاركتكم فرحة حفل زفافنا",
+  openGraph: {
+    title: `دعوة زفاف | ${COUPLE_DISPLAY}`,
+    description: "يسعدنا ويشرفنا أن ندعو حضرتكم الكريمة لمشاركتكم فرحة حفل زفافنا",
+    type: "website",
+    locale: "ar_AR",
+    siteName: "دعوة زفاف",
+    images: [
+      {
+        url: "/images/couple.png",
+        width: 1200,
+        height: 1200,
+        alt: "Invitation preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `دعوة زفاف | ${COUPLE_DISPLAY}`,
+    description: "يسعدنا ويشرفنا أن ندعو حضرتكم الكريمة لمشاركتكم فرحة حفل زفافنا",
+    images: ["/images/couple.png"],
+  },
 };
 
 export default function RootLayout({
