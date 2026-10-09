@@ -1,4 +1,5 @@
 import ScratchDate from "./ScratchDate";
+import { COUPLE_DISPLAY } from "@/lib/wedding";
 
 /**
  * Section 2 — distinct ticket-style panel (not Mihrab).
@@ -34,9 +35,40 @@ export default function InvitationDetailsPanel() {
             <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
           <span className="font-sans text-charcoal text-sm sm:text-base font-medium tabular-nums" dir="ltr">
-            4:00 PM
+            18:00
           </span>
-          <span className="font-sans text-charcoal/60 text-xs sm:text-sm">مساءً</span>
+        </div>
+
+        <div
+          data-hero-item
+          dir="rtl"
+          className="w-full max-w-[255px] rounded-[1.25rem] border border-gold/25 bg-white/35 px-3 py-3 text-center shadow-[0_6px_18px_-12px_rgba(80,65,40,0.3)]"
+        >
+          <div className="flex flex-col items-center gap-1.5">
+            <p className="font-display text-charcoal text-base sm:text-lg leading-tight">{COUPLE_DISPLAY}</p>
+            <p className="font-sans text-charcoal text-sm sm:text-base leading-tight">17 أكتوبر 2026</p>
+            <p className="font-sans text-charcoal text-sm sm:text-base leading-tight">18:00</p>
+            <p className="font-sans text-charcoal/80 text-[0.7rem] sm:text-xs leading-relaxed">
+              قصر/Le Palais Palestinien – Tanger
+            </p>
+          </div>
+        </div>
+
+        <div data-hero-item dir="rtl" className="flex w-full max-w-[240px] flex-col items-center gap-2 text-center">
+          <div className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/30 bg-white/45 px-3 py-2 text-charcoal/80 shadow-[0_5px_16px_-10px_rgba(80,65,40,0.28)]">
+            <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-gold-deep" fill="none" aria-hidden="true">
+              <path d="M3.5 7.25A2.25 2.25 0 0 1 5.75 5h12.5A2.25 2.25 0 0 1 20.5 7.25v9.5A2.25 2.25 0 0 1 18.25 19H5.75A2.25 2.25 0 0 1 3.5 16.75v-9.5Z" stroke="currentColor" strokeWidth="1.4" />
+              <path d="M7.5 9.5h9M8 15.5h8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              <path d="M12 7.5V4.5M16 10.5 12 14.5 8 10.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M19.5 5.5 4.5 18.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+            <span className="font-display text-base sm:text-lg leading-none tracking-[0.03em] text-charcoal">
+              ممنوع التصوير
+            </span>
+          </div>
+          <p className="font-display text-[0.8rem] leading-[1.9] tracking-[0.02em] text-charcoal/80 sm:text-base">
+            نوما هنيئا لأطفالكم
+          </p>
         </div>
       </div>
     </article>

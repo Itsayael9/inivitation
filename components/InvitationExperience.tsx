@@ -53,13 +53,24 @@ export default function InvitationExperience() {
     return () => el.classList.remove("no-scroll");
   }, [opened]);
 
-  /* Warm up audio on first touch (helps iOS unlock playback). */
+  /* Attempt autoplay as soon as the page loads, and keep a user-gesture fallback for browsers that block it. */
   useEffect(() => {
     if (opened) return;
+
+    const start = () => {
+      preloadMusic();
+      playWeddingMusic();
+    };
+
     const warm = () => preloadMusic();
+
+    start();
+    document.addEventListener("pointerdown", start, { once: true, passive: true });
     document.addEventListener("touchstart", warm, { once: true, passive: true });
     document.addEventListener("click", warm, { once: true });
+
     return () => {
+      document.removeEventListener("pointerdown", start);
       document.removeEventListener("touchstart", warm);
       document.removeEventListener("click", warm);
     };
@@ -122,7 +133,6 @@ export default function InvitationExperience() {
 
       root.querySelectorAll("[data-floral]").forEach(prepDraw);
       gsap.set(root.querySelectorAll("[data-schedule-row]"), { autoAlpha: 0, x: 24 });
-      gsap.set(root.querySelectorAll("[data-countdown-unit]"), { autoAlpha: 0, scale: 0.75 });
       gsap.set(root.querySelectorAll("[data-reveal-title]"), { autoAlpha: 0, y: 24 });
       gsap.set(root.querySelectorAll("[data-reveal-divider]"), { scaleX: 0, autoAlpha: 0 });
       gsap.set(root.querySelectorAll("[data-reveal-item]"), { autoAlpha: 0, y: 20 });
@@ -134,7 +144,7 @@ export default function InvitationExperience() {
       if (prefersReducedMotion()) {
         gsap.set(
           root.querySelectorAll(
-            "[data-hero-item], [data-schedule-row], [data-countdown-unit], [data-reveal-title], [data-reveal-divider], [data-reveal-item], [data-swatch], [data-timeline-line], [data-venue-block], [data-memory-slider]"
+            "[data-hero-item], [data-schedule-row], [data-reveal-title], [data-reveal-divider], [data-reveal-item], [data-swatch], [data-timeline-line], [data-venue-block], [data-memory-slider]"
           ),
           { autoAlpha: 1, y: 0, x: 0, scale: 1, scaleX: 1, scaleY: 1, clearProps: "scale" }
         );
@@ -248,15 +258,6 @@ export default function InvitationExperience() {
           );
         }
 
-        const units = section.querySelectorAll("[data-countdown-unit]");
-        if (units.length) {
-          tl.to(
-            units,
-            { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(2.2)", stagger: 0.07 },
-            0.28
-          );
-        }
-
         const line = section.querySelector("[data-timeline-line]");
         if (line) {
           tl.to(line, { scaleY: 1, duration: 1.1, ease: "power2.inOut" }, 0.2);
@@ -321,6 +322,7 @@ export default function InvitationExperience() {
   function openEnvelope() {
     if (opening.current) return;
     opening.current = true;
+    preloadMusic();
     playWeddingMusic();
 
     const root = rootRef.current;

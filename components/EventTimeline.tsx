@@ -58,7 +58,7 @@ export default function EventTimeline() {
         <ul className="flex flex-col gap-0">
           {scheduleEvents.map((item, i) => (
             <li
-              key={item.title}
+              key={item.id}
               data-schedule-row
               className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-4 sm:py-5"
             >

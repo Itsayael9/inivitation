@@ -24,7 +24,7 @@ export default function CoupleNames({
 }: CoupleNamesProps) {
   return (
     <Tag
-      className={`couple-names inline-flex flex-wrap items-baseline justify-center gap-x-[0.28em] font-display font-bold text-black leading-tight tracking-wide ${sizeClasses[size]} ${className}`}
+      className={`couple-names inline-flex flex-wrap items-baseline justify-center gap-x-[0.28em] font-body font-bold text-black leading-tight tracking-wide ${sizeClasses[size]} ${className}`}
       dir="rtl"
     >
       <span className="couple-names__name">{BRIDE_NAME}</span>

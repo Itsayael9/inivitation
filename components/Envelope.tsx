@@ -23,7 +23,7 @@ export default function Envelope({ onOpen }: { onOpen: () => void }) {
           <CoupleNames size="xl" />
         </h1>
         <p className="font-display text-gold-deep/85 text-sm sm:text-base mt-2 sm:mt-3 tracking-[0.18em]">
-          20 . 05 . 2027
+          17 . 10 . 2026
         </p>
       </header>
 

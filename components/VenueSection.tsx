@@ -29,9 +29,15 @@ export default function VenueSection({ onDark = false }: { onDark?: boolean }) {
           <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
         </svg>
         <p className="font-sans text-charcoal/80 text-sm sm:text-base">{VENUE_LABEL}</p>
-        <p className="font-script text-charcoal text-2xl sm:text-3xl leading-tight" dir="ltr">
+        <a
+          href={VENUE_MAP_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-script text-charcoal text-2xl sm:text-3xl leading-tight hover:text-gold-deep transition-colors"
+          dir="rtl"
+        >
           {VENUE_NAME}
-        </p>
+        </a>
       </div>
 
       <div data-venue-block className="w-full">

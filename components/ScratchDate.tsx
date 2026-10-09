@@ -6,9 +6,9 @@ import gsap from "gsap";
 type CardData = { value: string; label: string; sub?: string };
 
 const CARDS: CardData[] = [
-  { value: "20", label: "اليوم", sub: "السبت" },
-  { value: "مايو", label: "الشهر" },
-  { value: "2027", label: "السنة" },
+  { value: "17", label: "اليوم", sub: "السبت" },
+  { value: "أكتوبر", label: "الشهر" },
+  { value: "2026", label: "السنة" },
 ];
 
 function ScratchCard({ value, label, sub, index }: CardData & { index: number }) {
