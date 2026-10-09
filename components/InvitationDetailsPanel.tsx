@@ -45,9 +45,13 @@ export default function InvitationDetailsPanel() {
           className="w-full max-w-[255px] rounded-[1.25rem] border border-gold/25 bg-white/35 px-3 py-3 text-center shadow-[0_6px_18px_-12px_rgba(80,65,40,0.3)]"
         >
           <div className="flex flex-col items-center gap-1.5">
-            <p className="font-display text-charcoal text-base sm:text-lg leading-tight">{COUPLE_DISPLAY}</p>
+            <p className="font-['Amiri'] gold-text text-[clamp(1.8rem,5vw,2.5rem)] leading-[1.2] tracking-[0.03em]">
+              {COUPLE_DISPLAY}
+            </p>
+            <br></br>
             <p className="font-sans text-charcoal text-sm sm:text-base leading-tight">17 أكتوبر 2026</p>
             <p className="font-sans text-charcoal text-sm sm:text-base leading-tight">18:00</p>
+
             <p className="font-sans text-charcoal/80 text-[0.7rem] sm:text-xs leading-relaxed">
               قصر/Le Palais Palestinien – Tanger
             </p>

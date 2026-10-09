@@ -322,8 +322,12 @@ export default function InvitationExperience() {
   function openEnvelope() {
     if (opening.current) return;
     opening.current = true;
+
     preloadMusic();
     playWeddingMusic();
+    window.setTimeout(() => {
+      playWeddingMusic();
+    }, 400);
 
     const root = rootRef.current;
     if (!root) {
@@ -342,6 +346,10 @@ export default function InvitationExperience() {
     const finish = () => {
       setOpened(true);
       window.scrollTo(0, 0);
+      playWeddingMusic();
+      window.setTimeout(() => {
+        playWeddingMusic();
+      }, 600);
       verifyMusicPlaying();
     };
 

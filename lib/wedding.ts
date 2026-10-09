@@ -40,7 +40,7 @@ export const scheduleEvents = [
   },
   {
     id: "music-until-dawn",
-    time: "12:00",
+    time: "00:00",
     title: " العشاء",
     description:"مأدبة عشاء تقليدية مع الأهل والأصدقاء",
   },
