@@ -14,10 +14,10 @@ export const VENUE_LABEL = "قاعة أفراح فلسطيني";
 export const VENUE_NAME = "Salle Afrah Filistine";
 
 export const VENUE_MAP_EMBED =
-  "https://www.google.com/maps?q=Le+Palais+Palestinien+Tanger&output=embed";
+  "https://www.google.com/maps?q=Salle+Afrah+Filistine&output=embed";
 
 export const VENUE_MAP_LINK =
-  "https://share.google/1LFGu99q1JJG6CWRn";
+  "https://maps.app.goo.gl/CCTVTmrnQrQxsk7KA";
 
 export const scheduleEvents = [
   {
